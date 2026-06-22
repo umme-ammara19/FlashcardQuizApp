@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Flashcard</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Edit Flashcard</h1>
+
+    <form method="POST">
+
+        <input type="text"
+               name="question"
+               value="{{ card[1] }}"
+               required>
+
+        <br><br>
+
+        <input type="text"
+               name="answer"
+               value="{{ card[2] }}"
+               required>
+
+        <br><br>
+
+        <button class="warning">Update Flashcard</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

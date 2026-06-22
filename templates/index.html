@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flashcard Quiz App</title>
+    
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📚 Flashcard Quiz App</h1>
+<p class="subtitle">
+    Learn and revise concepts using interactive flashcards
+</p>
+
+    <a href="/add">
+    <button class="primary">Add Flashcard</button>
+</a>
+
+    <hr>
+
+    {% if card %}
+
+    <div class="card">
+
+        <p class="counter">
+    Card {{ index + 1 }} of {{ total }}
+</p>
+        <h2>📖 Question</h2>
+
+        <p class="question">{{ card[1] }}</p>
+
+        <details>
+           <summary>💡 Show Answer</summary>
+
+            <p class="answer">{{ card[2] }}</p>
+        </details>
+
+        <br>
+
+        <a href="/?index={{ index - 1 }}">
+    <button class="primary">⬅ Previous</button>
+</a>
+
+<a href="/?index={{ index + 1 }}">
+    <button class="primary">Next ➡</button>
+</a>
+
+        <br><br>
+
+        <a href="/edit/{{ card[0] }}">
+    <button class="warning">Edit</button>
+</a>
+
+<a href="/delete/{{ card[0] }}">
+    <button class="danger">Delete</button>
+</a>
+
+    </div>
+
+    {% else %}
+
+    <h3>No flashcards found.</h3>
+
+    {% endif %}
+<hr>
+
+<p class="subtitle">
+    CodeAlpha Internship Project
+</p>
+</div>
+
+</body>
+</html>
