@@ -18,7 +18,27 @@ def init_db():
         answer TEXT NOT NULL
     )
     """)
+cursor.execute("SELECT COUNT(*) FROM flashcards")
+count = cursor.fetchone()[0]
 
+if count == 0:
+    default_cards = [
+        ("What is Python?", "A programming language"),
+        ("What is HTML?", "Used to structure web pages"),
+        ("What is CSS?", "Used to style web pages"),
+        ("What is JavaScript?", "Adds interactivity to websites"),
+        ("What is Flask?", "A Python web framework"),
+        ("What is SQL?", "Language used to manage databases"),
+        ("What is Git?", "Version control system"),
+        ("What is GitHub?", "Platform for hosting code"),
+        ("What is SQLite?", "Lightweight database"),
+        ("What is API?", "Interface for communication between applications")
+    ]
+
+    cursor.executemany(
+        "INSERT INTO flashcards(question, answer) VALUES (?, ?)",
+        default_cards
+    )
     conn.commit()
     conn.close()
 
